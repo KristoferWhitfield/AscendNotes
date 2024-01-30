@@ -1,6 +1,11 @@
 import { useState } from 'react'
 
 function App() {
+  //todo set up basic react with test note
+  //create form
+  //create components
+  //add like and save functionality
+
   const testNote = {
     id: 0,
     text: "This is a test note",
@@ -8,45 +13,30 @@ function App() {
   }
 
   const [notes, setNotes] = useState([testNote])
-  const [newNote, setNewNote] = useState('')
-
-
-  const changeId = () => {
-    const noteId = !notes.length ? 0 : notes.length + 1  
-    return noteId  
-  }
+  const [newNote, setnewNote] = useState('')
 
   function addNewNote(e){
     e.preventDefault()
 
-    //Set up new note object
-    const noteObject = {
-      id: changeId(),
-      text: newNote,
-      important: false
-    }
-
-    setNotes(notes.concat(noteObject))
-    setNewNote('')
+    console.log('new note added')
   }
 
   return (
     <div>
-      <h1>Ascend Notes</h1>
+      <h1>Notes App</h1>
       <form onSubmit={(e) => addNewNote(e)}>
-        <input 
-          value={newNote}
-          required
-          onChange={(e) => setNewNote(e.target.value)}
-        />
+        <input value={}/>
         <button type='submit'>Add</button>
-      </form>
       <hr />
+      </form>
       <ul>
         {notes.map(note => 
           <p key={note.id}>{note.text}</p>
         )}
       </ul>
+      <div>
+        Click here to save a note!
+      </div>
     </div>
   )
 }
