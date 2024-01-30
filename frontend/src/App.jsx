@@ -1,14 +1,35 @@
 import { useState } from 'react'
+import Notes from './components/Notes'
+import Form from './components/Form'
 
 function App() {
-  const testNote = {
-    id: 0,
-    text: "This is a test note",
-    importance: false
-  }
+  const testNote = [
+    {
+      id: 1,
+      text: "This is a test note",
+      important: false
+    }, 
+    {
+      id: 2,
+      text: "This is a test note2",
+      important: false
+    }, 
+    {
+      id: 3,
+      text: "This is a test note3",
+      important: false
+    }, 
+    {
+      id: 4,
+      text: "This is a test note4",
+      important: false
+    }, 
+    
+    ]
 
-  const [notes, setNotes] = useState([testNote])
+  const [notes, setNotes] = useState(testNote)
   const [newNote, setNewNote] = useState('')
+  const [important, setImportant] = useState(false)
 
 
   const changeId = () => {
@@ -16,7 +37,7 @@ function App() {
     return noteId  
   }
 
-  function addNewNote(e){
+  const addNewNote = (e) => {
     e.preventDefault()
 
     //Set up new note object
@@ -30,22 +51,37 @@ function App() {
     setNewNote('')
   }
 
+  const handleOnChange = (e) => {
+    setNewNote(e.target.value)
+  }
+
+
+  const toggleImportant = (id) => {
+    const note = notes.find(note => note.id === id)
+    const changedNote = {...note, important: !note.important}
+
+    setNotes(notes.map(n => n.id !== id ? n : changedNote))
+    console.log(changedNote)
+  }
+  
   return (
     <div>
       <h1>Ascend Notes</h1>
-      <form onSubmit={(e) => addNewNote(e)}>
-        <input 
-          value={newNote}
-          required
-          onChange={(e) => setNewNote(e.target.value)}
-        />
-        <button type='submit'>Add</button>
-      </form>
+      <Form 
+        onSubmit={addNewNote} 
+        value={newNote} 
+        onChange={handleOnChange}
+      />
       <hr />
       <ul>
-        {notes.map(note => 
-          <p key={note.id}>{note.text}</p>
-        )}
+      {notes.map(note => 
+        <Notes 
+          key={note.id} 
+          text={note.text} 
+          toggleImportant={() => toggleImportant(note.id)} 
+          style={{ border: `1px solid ${note.important ? 'red' : 'transparent'}`}}
+        />
+      )}
       </ul>
     </div>
   )
