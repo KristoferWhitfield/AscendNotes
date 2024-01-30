@@ -59,7 +59,16 @@ function App() {
     const changedNote = {...note, important: !note.important}
 
     setNotes(notes.map(n => n.id !== id ? n : changedNote))
-    console.log(changedNote)
+  }
+
+  const updateNote = (id) => {
+    const note = notes.find(note => note.id === id)
+    const confirm = window.prompt(`Do you want to update this note?`, note.text)
+
+    if(confirm){
+      const changedText = {...note, text: confirm}
+      setNotes(notes.map((n) => n.id === id ? changedText : n))
+    }
   }
   
   return (
@@ -78,6 +87,7 @@ function App() {
           text={note.text} 
           toggleImportant={() => toggleImportant(note.id)} 
           style={{ border: `1px solid ${note.important ? 'red' : 'transparent'}`}}
+          updateNote={() => updateNote(note.id)}
         />
       )}
       </ul>
