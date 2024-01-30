@@ -29,8 +29,6 @@ function App() {
 
   const [notes, setNotes] = useState(testNote)
   const [newNote, setNewNote] = useState('')
-  const [important, setImportant] = useState(false)
-
 
   const changeId = () => {
     const noteId = !notes.length ? 0 : notes.length + 1  
