@@ -86,14 +86,13 @@ function App() {
     }
   }
 
-  
   return (
     <div>
       <h1>Ascend Notes</h1>
       <Form 
         onSubmit={addNewNote} 
         value={newNote} 
-        onChange={(e) => setNewNote(e.target.id)}
+        onChange={(e) => setNewNote(e.target.value)}
       />
       <hr />
       <div>
