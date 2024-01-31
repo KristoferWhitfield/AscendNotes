@@ -3,10 +3,14 @@ import Notes from './components/Notes'
 import Form from './components/Form'
 
 function App() {
+  // const style = {
+  //   fontSize: '20px',
+  //   // fontWeight: '900'
+  // }
   const testNote = [
     {
       id: 1,
-      text: "This is a test note",
+      text: "Html, Css, and Javascript are fun!!",
       important: false
     }, 
     {
@@ -25,10 +29,12 @@ function App() {
       important: false
     }, 
     
-    ]
+  ]
 
   const [notes, setNotes] = useState(testNote)
   const [newNote, setNewNote] = useState('')
+  // const [successMessage, setSuccessMessage] = useState(null)
+  // const [errorMessage, setErrorMessage] = useState(null)
 
   const changeId = () => {
     const noteId = !notes.length ? 0 : notes.length + 1  
@@ -49,27 +55,37 @@ function App() {
     setNewNote('')
   }
 
-  const handleOnChange = (e) => {
-    setNewNote(e.target.value)
+  const findId = (id) => {
+    return notes.find(note => note.id === id)
   }
 
-
   const toggleImportant = (id) => {
-    const note = notes.find(note => note.id === id)
+    const note = findId(id)
     const changedNote = {...note, important: !note.important}
 
     setNotes(notes.map(n => n.id !== id ? n : changedNote))
   }
 
   const updateNote = (id) => {
-    const note = notes.find(note => note.id === id)
-    const confirm = window.prompt(`Do you want to update this note?`, note.text)
+    const note = findId(id)
+    const updateNote = window.prompt('Do you want to update this note?', note.text)
 
-    if(confirm){
-      const changedText = {...note, text: confirm}
+    if(updateNote){
+      const changedText = {...note, text: updateNote}
       setNotes(notes.map((n) => n.id === id ? changedText : n))
     }
   }
+
+  // Delete
+  const deleteNote = (id) => {
+    const filteredNote = notes.filter(note => id !== note.id)
+    const confirmDelete = window.confirm('Would you want to remove this note?')
+
+    if(confirmDelete){
+      setNotes(filteredNote)
+    }
+  }
+
   
   return (
     <div>
@@ -77,20 +93,20 @@ function App() {
       <Form 
         onSubmit={addNewNote} 
         value={newNote} 
-        onChange={handleOnChange}
+        onChange={(e) => setNewNote(e.target.id)}
       />
       <hr />
-      <ul>
-      {notes.map(note => 
-        <Notes 
-          key={note.id} 
-          text={note.text} 
-          toggleImportant={() => toggleImportant(note.id)} 
-          style={{ border: `1px solid ${note.important ? 'red' : 'transparent'}`}}
-          updateNote={() => updateNote(note.id)}
-        />
-      )}
-      </ul>
+      <div>
+        {notes.map(note => 
+          <Notes 
+            key={note.id} 
+            note={note}
+            toggleImportant={() => toggleImportant(note.id)} 
+            updateNote={() => updateNote(note.id)}
+            deleteNote={() => deleteNote(note.id)}
+          />
+        )}
+      </div>
     </div>
   )
 }
