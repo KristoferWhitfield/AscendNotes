@@ -14,8 +14,10 @@ const remove = (id) => {
   return axios.delete(`${url}/${id}`).then((response) => response.data);
 };
 
-const update = (id, newNote) => {
-  return axios.put(`${url}/${id}`, newNote).then((response) => response.data);
+const update = (id, updatedText) => {
+  return axios
+    .put(`${url}/${id}`, updatedText)
+    .then((response) => response.data);
 };
 
 export const noteServices = {
