@@ -1,43 +1,30 @@
-import { useState } from 'react'
-import Notes from './components/Notes'
+import { useState, useEffect } from 'react'
+import Notes from './components/notes'
 import Form from './components/Form'
+import { noteServices } from './services/noteServices'
+
+const {
+  get,
+  create,
+  update,
+  remove
+} = noteServices
 
 function App() {
-  // const style = {
-  //   fontSize: '20px',
-  //   // fontWeight: '900'
-  // }
-  const testNote = [
-    {
-      id: 1,
-      text: "Html, Css, and Javascript are fun!!",
-      important: false
-    }, 
-    {
-      id: 2,
-      text: "This is a test note2",
-      important: false
-    }, 
-    {
-      id: 3,
-      text: "This is a test note3",
-      important: false
-    }, 
-    {
-      id: 4,
-      text: "This is a test note4",
-      important: false
-    }, 
-    
-  ]
-
-  const [notes, setNotes] = useState(testNote)
+  const [notes, setNotes] = useState([])
   const [newNote, setNewNote] = useState('')
   // const [successMessage, setSuccessMessage] = useState(null)
   // const [errorMessage, setErrorMessage] = useState(null)
 
+  useEffect(() => {
+    get()
+    .then(notes => 
+      setNotes(notes)
+    )
+  }, [])
+
   const changeId = () => {
-    const noteId = !notes.length ? 0 : notes.length + 1  
+    const noteId = !notes.length ? 1 : notes.length + 1  
     return noteId  
   }
 
@@ -50,29 +37,44 @@ function App() {
       text: newNote,
       important: false
     }
-
-    setNotes(notes.concat(noteObject))
+    //Post rq
+    create(noteObject)
+    .then(newNotes => 
+      setNotes(notes.concat(newNotes))
+    )
+    
     setNewNote('')
   }
 
-  const findId = (id) => {
+  const findNote = (id) => {
     return notes.find(note => note.id === id)
   }
 
   const toggleImportant = (id) => {
-    const note = findId(id)
-    const changedNote = {...note, important: !note.important}
-
-    setNotes(notes.map(n => n.id !== id ? n : changedNote))
+    const note = findNote(id)
+    const updatedImportance = {...note, important: !note.important}
+    //Post rq
+    update(id, updatedImportance)
+    .then(
+      setNotes(notes.map(n => n.id !== id ? n : updatedImportance))
+    )
   }
 
   const updateNote = (id) => {
-    const note = findId(id)
-    const updateNote = window.prompt('Do you want to update this note?', note.text)
+    const note = findNote(id)
+    const notePrompt = window.prompt('Do you want to update this note?', note.text)
 
-    if(updateNote){
-      const changedText = {...note, text: updateNote}
-      setNotes(notes.map((n) => n.id === id ? changedText : n))
+    if(notePrompt){
+      const updatedText = {...note, text: notePrompt}
+      //Post rq
+      update(id, updatedText)
+      .then(
+        setNotes(notes.map(n => n.id === id ? updatedText : n)),
+        setSuccessMessage('Successfully Updated')
+        )
+        setTimeout(() => {
+          setSuccessMessage(null)
+        }, 2000)
     }
   }
 
@@ -82,7 +84,10 @@ function App() {
     const confirmDelete = window.confirm('Would you want to remove this note?')
 
     if(confirmDelete){
-      setNotes(filteredNote)
+      remove(id)
+      .then(
+        setNotes(filteredNote)
+      )
     }
   }
 

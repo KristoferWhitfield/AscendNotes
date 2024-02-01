@@ -1,0 +1,11 @@
+GET http://localhost:3001/notes
+
+###
+POST http://localhost:3001/notes
+Content-Type: application/json
+
+{
+  "id": 6,
+  "text": "Hello we made it",
+  "important": true
+}
