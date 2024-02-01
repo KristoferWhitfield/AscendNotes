@@ -28,18 +28,12 @@ function App() {
     )
   }, [])
 
-  const changeId = () => {
-    const noteId = String(!notes.length ? 1 : notes.length + 1)
-    return noteId  
-  }
-
   const addNewNote = (e) => {
     e.preventDefault()
 
     //Set up new note object
     const noteObject = {
-      id: changeId(),
-      text: newNote,
+      content: newNote,
       important: false
     }
     //Post rq
@@ -68,14 +62,14 @@ function App() {
 
   const updateNote = (id) => {
     const note = findNote(id)
-    const notePrompt = window.prompt('Do you want to update this note?', note.text)
+    const notePrompt = window.prompt('Do you want to update this note?', note.content)
 
     if(notePrompt){
-      const updatedText = {...note, text: notePrompt}
+      const updatedContent = {...note, content: notePrompt}
       //Post rq
-      update(id, updatedText)
+      update(id, updatedContent)
       .then(
-        setNotes(notes.map(n => n.id === id ? updatedText : n)),
+        setNotes(notes.map(n => n.id === id ? updatedContent : n)),
         setSuccessMessage('Successfully Updated.'),
         setDisableFunction(true),
         setTimeout(() => {
