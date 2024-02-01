@@ -1,7 +1,8 @@
 import { FaTrashAlt } from "react-icons/fa";
 import { TiPin, TiPinOutline } from "react-icons/ti";
 
-function Notes({note, toggleImportant, updateNote, deleteNote }) {
+function Notes({note, toggleImportant, updateNote, deleteNote, deactivate}) {
+
   const noteStyle = {
     fontSize: `${note.important ? '22px' : '18px'}`
   }
@@ -45,11 +46,11 @@ function Notes({note, toggleImportant, updateNote, deleteNote }) {
         )
       }
         <p style={noteStyle}>
-          {note.text}
+          {note.content}
         </p>
       </div>
       <div style={secondaryDivStyle}>
-        <button onClick={updateNote}>Update</button>
+        <button onClick={updateNote} disabled={deactivate}>Update</button>
         <FaTrashAlt style={deleteStyle} onClick={deleteNote} />
       </div>
     </>

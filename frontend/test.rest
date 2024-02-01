@@ -1,4 +1,4 @@
-GET http://localhost:3001/notes
+GET http://localhost:8080/api/notes
 
 ###
 POST http://localhost:3001/notes
@@ -9,3 +9,6 @@ Content-Type: application/json
   "text": "Hello we made it",
   "important": true
 }
+
+###
+DELETE http://localhost:8080/api/notes/65b93a7bb8d6ff2bcba9d507

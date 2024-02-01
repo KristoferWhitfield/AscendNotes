@@ -1,14 +1,14 @@
 {
   "notes": [
     {
-      "id": "1",
-      "important": false,
-      "text": "helllooo"
+      "id": "2",
+      "text": "When life gives you lemons...",
+      "important": true
     },
     {
-      "id": "2",
-      "text": "When life gives you lemons",
-      "important": false
+      "id": "3",
+      "text": "New note please",
+      "important": true
     }
   ]
 }
