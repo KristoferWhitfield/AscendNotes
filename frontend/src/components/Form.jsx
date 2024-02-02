@@ -6,6 +6,7 @@ function Form({ onChange, value, onSubmit }) {
           value={value}
           required
           onChange={onChange}
+          id='note-input'
         />
         <button type='submit'>Add</button>
       </form>
