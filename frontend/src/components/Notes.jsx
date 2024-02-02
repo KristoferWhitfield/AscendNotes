@@ -45,7 +45,7 @@ function Notes({note, toggleImportant, updateNote, deleteNote, deactivate}) {
           />
         )
       }
-        <p style={noteStyle}>
+        <p style={noteStyle} className="note">
           {note.content}
         </p>
       </div>
