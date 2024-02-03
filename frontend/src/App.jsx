@@ -37,11 +37,20 @@ function App() {
       important: false
     }
     //Post rq
-    create(noteObject)
-    .then(newNotes => 
-      setNotes(notes.concat(newNotes))
-    )
-    
+    if(newNote.length >= 5){
+      create(noteObject)
+      .then(newNotes => 
+        setNotes(notes.concat(newNotes))
+      ).catch(error => 
+        console.log(error.response.data.error)
+      )
+    }else {
+      setErrorMessage('Not enough characters for a note! : Minimum length - 5')
+
+      setTimeout(() => {
+        setErrorMessage(null)
+      }, 1500)
+    }
     setNewNote('')
   }
 
@@ -64,7 +73,7 @@ function App() {
     const note = findNote(id)
     const notePrompt = window.prompt('Do you want to update this note?', note.content)
 
-    if(notePrompt){
+    if(notePrompt && notePrompt.length >= 5){
       const updatedContent = {...note, content: notePrompt}
       //Post rq
       update(id, updatedContent)
@@ -86,6 +95,12 @@ function App() {
             setDisableFunction(false)
           }, 1500)
       })
+    }else {
+      setErrorMessage('Not enough characters for a note! : Minimum length - 5')
+
+      setTimeout(() => {
+        setErrorMessage(null)
+      }, 1500)
     }
   }
   // Delete
