@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import Notes from './components/notes'
+import Notes from './components/Notes'
 import Form from './components/Form'
 import { noteServices } from './services/noteServices'
 import SuccessMessage from './components/SuccessMessage'
@@ -12,7 +12,7 @@ const {
   remove
 } = noteServices
 
-function App() {
+function App( {noteObject }) {
   const [notes, setNotes] = useState([])
   const [newNote, setNewNote] = useState('')
   const [successMessage, setSuccessMessage] = useState(null)
@@ -30,18 +30,26 @@ function App() {
 
   const addNewNote = (e) => {
     e.preventDefault()
-
     //Set up new note object
-    const noteObject = {
+    noteObject = ({
       content: newNote,
       important: false
-    }
+    })
     //Post rq
-    create(noteObject)
-    .then(newNotes => 
-      setNotes(notes.concat(newNotes))
-    )
-    
+    if(newNote.length >= 5){
+      create(noteObject)
+      .then(newNotes => 
+        setNotes(notes.concat(newNotes))
+      ).catch(error => 
+        console.log(error.response.data.error)
+      )
+    }else {
+      setErrorMessage('Not enough characters for a note! : Minimum length - 5')
+
+      setTimeout(() => {
+        setErrorMessage(null)
+      }, 1000)
+    }
     setNewNote('')
   }
 
@@ -56,15 +64,15 @@ function App() {
     update(id, updatedImportance)
     .then(
       setNotes(notes.map(n => n.id !== id ? n : updatedImportance))
-
     )
   }
 
   const updateNote = (id) => {
-    const note = findNote(id)
-    const notePrompt = window.prompt('Do you want to update this note?', note.content)
+  const note = findNote(id)
+  const notePrompt = window.prompt('Do you want to update this note?', note.content)
 
-    if(notePrompt){
+  if(notePrompt){
+    if(notePrompt.length >= 5){
       const updatedContent = {...note, content: notePrompt}
       //Post rq
       update(id, updatedContent)
@@ -75,7 +83,7 @@ function App() {
         setTimeout(() => {
           setSuccessMessage(null),
           setDisableFunction(false)
-        }, 1500)
+        }, 1000)
       )
       .catch(error => {
           console.log(error)
@@ -84,9 +92,16 @@ function App() {
           setTimeout(() => {
             setErrorMessage(null)
             setDisableFunction(false)
-          }, 1500)
+          }, 1000)
       })
-    }
+      } else {
+        setErrorMessage('Not enough characters for a note! : Minimum length - 5')
+
+        setTimeout(() => {
+          setErrorMessage(null)
+        }, 1000)
+      }
+    }   
   }
   // Delete
   const deleteNote = (id) => {
@@ -102,14 +117,14 @@ function App() {
         setTimeout(() => {
           setSuccessMessage(null),
           setDisableFunction(false)
-        }, 1500)
+        }, 1000)
       )
       .catch(error => {
         console.log(error)
         setErrorMessage('This Note has already been removed!'),
         setTimeout(() => {
           setErrorMessage(null)
-        }, 1500)
+        }, 1000)
       })
     }
   }
@@ -131,7 +146,8 @@ function App() {
             key={note.id} 
             note={note}
             deactivate={disableFunction}
-            toggleImportant={() => toggleImportant(note.id)} 
+            toggleImportant={() => toggleImportant(note.id)}
+            important={note.important}
             updateNote={() => updateNote(note.id)}
             deleteNote={() => deleteNote(note.id)}
           />

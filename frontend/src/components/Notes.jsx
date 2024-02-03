@@ -1,10 +1,12 @@
 import { FaTrashAlt } from "react-icons/fa";
 import { TiPin, TiPinOutline } from "react-icons/ti";
+import { useState } from "react";
 
-function Notes({note, toggleImportant, updateNote, deleteNote, deactivate}) {
+function Notes({note, important, toggleImportant, updateNote, deleteNote, deactivate}) {
+  const [isClicked, setIsClicked] = useState(false);
 
   const noteStyle = {
-    fontSize: `${note.important ? '22px' : '18px'}`
+    fontSize: `${important ? '22px' : '18px'}`
   }
 
   const displayStyle = {
@@ -25,33 +27,38 @@ function Notes({note, toggleImportant, updateNote, deleteNote, deactivate}) {
   }
 
   const deleteStyle={
-    visibility: `${note.important ? 'hidden' : 'visible'}`
+    visibility: `${important ? 'hidden' : 'visible'}`
   }
+
+  const buttonClick = () => {
+    toggleImportant(note.id);
+
+    // Update the state to reflect that the button has been clicked
+    setIsClicked(!isClicked);
+  };
 
   return (
     <>
       <div style={displayStyle}>
-      {
-        note.important ? (
-          <TiPin 
-            style={elementStyle} 
-            onClick={toggleImportant}
-          />
-        ) :
-        (
-          <TiPinOutline 
-            style={elementStyle} 
-            onClick={toggleImportant}
-          />
-        )
-      }
+        <div data-testid="change-importance" onClick={buttonClick}>
+          {isClicked ? (
+            <TiPin data-testid="icon-important" style={elementStyle} />
+          ) : (
+            <TiPinOutline data-testid="icon-unImportant" style={elementStyle} />
+          )}
+        </div>
         <p style={noteStyle} className="note">
           {note.content}
         </p>
       </div>
       <div style={secondaryDivStyle}>
-        <button onClick={updateNote} disabled={deactivate}>Update</button>
-        <FaTrashAlt style={deleteStyle} onClick={deleteNote} />
+        <button data-testid="update-button" onClick={() => updateNote(note.id)} disabled={deactivate}>Update</button>
+        <div>
+          <FaTrashAlt
+            data-testid="delete-icon"
+            style={deleteStyle} 
+            onClick={() => deleteNote(note.id)} />
+        </div>
       </div>
     </>
   )
