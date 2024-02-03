@@ -19,7 +19,7 @@ function SuccessMessage({ message }) {
     <>
       {message ? 
         (<div style={style}>
-          <FaCheckCircle style={{marginRight: '10px'}}/>
+          <FaCheckCircle data-testid="success-icon" style={{marginRight: '10px'}}/>
           {message}
         </div>) : null
       }

@@ -52,8 +52,13 @@ function Notes({note, important, toggleImportant, updateNote, deleteNote, deacti
         </p>
       </div>
       <div style={secondaryDivStyle}>
-        <button onClick={updateNote} disabled={deactivate}>Update</button>
-        <FaTrashAlt style={deleteStyle} onClick={deleteNote} />
+        <button data-testid="update-button" onClick={() => updateNote(note.id)} disabled={deactivate}>Update</button>
+        <div>
+          <FaTrashAlt
+            data-testid="delete-icon"
+            style={deleteStyle} 
+            onClick={() => deleteNote(note.id)} />
+        </div>
       </div>
     </>
   )

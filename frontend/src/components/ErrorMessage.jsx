@@ -1,6 +1,6 @@
 import { MdError } from "react-icons/md";
 
-function ErrorMessage( { message }) {
+function ErrorMessage({ message }) {
   const style = {
     display: 'flex',
     backgroundColor: '#ff000055',
@@ -19,7 +19,7 @@ function ErrorMessage( { message }) {
     <>
       {message ? 
         (<div style={style}>
-          <MdError style={{marginRight: '5px'}}/>
+          <MdError data-testid="error-icon" style={{marginRight: '5px'}}/>
           Error: {message}
         </div>) : null
       }

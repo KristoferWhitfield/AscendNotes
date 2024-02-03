@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import Notes from './components/notes'
+import Notes from './components/Notes'
 import Form from './components/Form'
 import { noteServices } from './services/noteServices'
 import SuccessMessage from './components/SuccessMessage'
@@ -12,7 +12,7 @@ const {
   remove
 } = noteServices
 
-function App() {
+function App( {noteObject }) {
   const [notes, setNotes] = useState([])
   const [newNote, setNewNote] = useState('')
   const [successMessage, setSuccessMessage] = useState(null)
@@ -30,12 +30,11 @@ function App() {
 
   const addNewNote = (e) => {
     e.preventDefault()
-
     //Set up new note object
-    const noteObject = {
+    noteObject = ({
       content: newNote,
       important: false
-    }
+    })
     //Post rq
     if(newNote.length >= 5){
       create(noteObject)

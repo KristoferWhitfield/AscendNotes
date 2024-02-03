@@ -1,8 +1,8 @@
 import '@testing-library/jest-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
-import Notes from './notes';
+import Notes from './Notes';
 
-test('toggles importance state', async () => {
+test('toggles importance state', () => {
   const onToggleMock = jest.fn();
 
   const note = { id: 1, content: 'Some content', important: false };
@@ -16,5 +16,4 @@ test('toggles importance state', async () => {
   expect(screen.getByTestId('icon-important')).toBeInTheDocument();
 
   expect(onToggleMock).toHaveBeenCalledWith(note.id);
-  console.log(onToggleMock.mock.calls);
 });
