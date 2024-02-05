@@ -5,7 +5,7 @@ import Notes from '../Notes';
 test('Delete button exists and updates parent state', () => {
   const onDeleteMock = jest.fn();
 
-  const note = { id: 1, content: 'Test Note', important: false };
+  const note = { id: 1, content: 'Test Note', color: 'red', important: false };
 
   render(
     <Notes
@@ -29,7 +29,7 @@ test('Delete button exists and updates parent state', () => {
 test('does not render delete button if important', () => {
   const onDeleteMock = jest.fn();
 
-  const note = { id: 1, content: 'Test Note', important: true };
+  const note = { id: 1, content: 'Test Note', color: 'red', important: true };
 
   render(
     <Notes

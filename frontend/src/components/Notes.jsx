@@ -1,10 +1,18 @@
 import { FaTrashAlt } from "react-icons/fa";
 import { TiPin, TiPinOutline } from "react-icons/ti";
 import { FaPencilAlt } from "react-icons/fa";
+// import { useState } from "react";
 import Card from 'react-bootstrap/Card'
 import '../components/css/Notes.css'
 
 function Notes({note, important, toggleImportant, updateNote, deleteNote, deactivate}) {
+  // const [isClicked, setIsClicked] = useState(false) 
+
+  // function changeImportance(id){
+  //   toggleImportant(note.id)
+
+  //   setIsClicked(true)
+  // }
 
   return (
     <div className="cardContainer">

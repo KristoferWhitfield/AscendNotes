@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import Notes from './components/notes'
+import Notes from './components/Notes'
 import Form from './components/Form'
 import { noteServices } from './services/noteServices'
 import SuccessMessage from './components/SuccessMessage'
@@ -175,8 +175,8 @@ function App({ noteObject }) {
           onChange={(e) => setNewNote(e.target.value)}
         />
         <div className='noteOptions'>
-          <button>
-            <MdDeleteSweep onClick={deleteAllNotes} />
+          <button data-testid="deleteAll-icon" onClick={deleteAllNotes} >
+            <MdDeleteSweep />
           </button>
           <button onClick={sortNotes}>
             <FaSort />
