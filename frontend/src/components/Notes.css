@@ -36,12 +36,12 @@
 .noteCard {
   padding: 0 0 10px 10px;
   border: 1px solid rgba(0, 0, 0, 0.164);
-  background-color: rgba(229, 229, 6, 0.788);
   font-family: 'Akaya Kanadaka';
-  font-size: 22px;
+  font-size: 25px;
   height: 250px;
   border: 1.5px solid black;
   border-radius: 15px;
+  width: 20rem;
 }
 
 /* update/Delete Styling */

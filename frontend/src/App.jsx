@@ -4,6 +4,8 @@ import Form from './components/Form'
 import { noteServices } from './services/noteServices'
 import SuccessMessage from './components/SuccessMessage'
 import ErrorMessage from './components/ErrorMessage'
+import { FaSort } from "react-icons/fa6";
+import { MdDeleteSweep } from "react-icons/md";
 import './App.css'
 
 const {
@@ -13,29 +15,41 @@ const {
   remove
 } = noteServices
 
-function App( {noteObject }) {
+function App({ noteObject }) {
   const [notes, setNotes] = useState([])
   const [newNote, setNewNote] = useState('')
   const [successMessage, setSuccessMessage] = useState(null)
   const [errorMessage, setErrorMessage] = useState(null)
   const [disableFunction, setDisableFunction] = useState(false)
+  const [isSorted, setIsSorted] = useState(false)
 
-  const collection = notes.sort((a, b) =>  b.important - a.important)
-
+  
   useEffect(() => {
     get()
     .then(notes => 
       setNotes(notes)
-    )
+      )
   }, [])
+  //Sort Notes function top-bottom/ bottom-top
+  const sortNotes = () => {
+    const collection = [...notes]
+    .sort((a, b) =>  (isSorted ? b.important - a.important : a.important - b.important))
+    setNotes(collection)
+    setIsSorted(!isSorted)
+  }
 
   const addNewNote = (e) => {
     e.preventDefault()
+    
+    const hex = Math.floor(Math.random() * 0xffffff).toString(16).padEnd(6, "0")
+
     //Set up new note object
     noteObject = ({
       content: newNote,
-      important: false
+      important: false,
+      color: hex
     })
+
     //Post rq
     if(newNote.length >= 5){
       create(noteObject)
@@ -79,7 +93,7 @@ function App( {noteObject }) {
       update(id, updatedContent)
       .then(
         setNotes(notes.map(n => n.id === id ? updatedContent : n)),
-        setSuccessMessage('Successfully Updated.'),
+        setSuccessMessage('You Changed Your Note!'),
         setDisableFunction(true),
         setTimeout(() => {
           setSuccessMessage(null),
@@ -100,7 +114,7 @@ function App( {noteObject }) {
 
         setTimeout(() => {
           setErrorMessage(null)
-        }, 1000)
+        }, 1500)
       }
     }   
   }
@@ -113,7 +127,7 @@ function App( {noteObject }) {
       remove(id)
       .then(
         setNotes(filteredNote),
-        setSuccessMessage('Successfully Deleted Note.'),
+        setSuccessMessage('Successfully Removed Note.'),
         setDisableFunction(true),
         setTimeout(() => {
           setSuccessMessage(null),
@@ -130,6 +144,12 @@ function App( {noteObject }) {
     }
   }
 
+  const deleteAllNotes = () => {
+    setNotes([])
+
+    
+  }
+
   return (
     <div>
       <div className='formContainer'>
@@ -139,13 +159,21 @@ function App( {noteObject }) {
           value={newNote} 
           onChange={(e) => setNewNote(e.target.value)}
         />
+        <div className='noteOptions'>
+          <button>
+            <MdDeleteSweep onClick={deleteAllNotes} />
+          </button>
+          <button onClick={sortNotes}>
+            <FaSort />
+          </button>
+        </div>
         <div className='NotificationMessages'>
           <ErrorMessage message={errorMessage} />
           <SuccessMessage message={successMessage}/>
         </div>
       </div>
       <div className='container'>
-        {collection.map(note => 
+        {notes.map(note => 
           <Notes 
             key={note.id} 
             note={note}

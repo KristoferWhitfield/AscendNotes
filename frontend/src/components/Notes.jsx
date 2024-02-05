@@ -9,7 +9,7 @@ function Notes({note, important, toggleImportant, updateNote, deleteNote, deacti
   return (
     <div className="cardContainer">
       <div className="noteContainer">
-        <Card className="noteCard" style={{ width: '20rem'}}>
+        <Card className="noteCard" style={{ backgroundColor: `#${note.color}d5` }}>
           <div data-testid="change-importance" onClick={toggleImportant} >
             {important ? (
               <TiPin role="icon-important" className="pinStyle" />
