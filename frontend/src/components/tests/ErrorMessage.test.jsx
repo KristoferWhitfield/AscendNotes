@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
-import ErrorMessage from './ErrorMessage';
+import ErrorMessage from '../ErrorMessage';
 
 test('renders error message when provided', () => {
   const message = 'Error!';

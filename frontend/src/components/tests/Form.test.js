@@ -1,8 +1,8 @@
 import '@testing-library/jest-dom';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { expect, jest, test } from '@jest/globals';
 import userEvent from '@testing-library/user-event';
-import Form from './Form';
+import Form from '../Form';
 
 // tests whether onSubmit is called when button is clicked
 test('<Form/> exists', () => {

@@ -1,7 +1,6 @@
-import React from 'react';
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
-import Notes from './notes';
+import Notes from '../Notes';
 
 test('renders content', () => {
   const note = {

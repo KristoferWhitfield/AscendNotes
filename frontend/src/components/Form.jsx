@@ -1,5 +1,5 @@
 import { LuFilePlus2 } from "react-icons/lu";
-import './Form.css'
+import '../components/css/Form.css'
 
 function Form({ onChange, value, onSubmit }) {
   return (

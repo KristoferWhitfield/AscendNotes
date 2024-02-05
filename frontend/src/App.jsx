@@ -6,13 +6,14 @@ import SuccessMessage from './components/SuccessMessage'
 import ErrorMessage from './components/ErrorMessage'
 import { FaSort } from "react-icons/fa6";
 import { MdDeleteSweep } from "react-icons/md";
-import './App.css'
+import './components/css/App.css'
 
 const {
   get,
   create,
   update,
-  remove
+  remove,
+  removeAll
 } = noteServices
 
 function App({ noteObject }) {
@@ -23,13 +24,14 @@ function App({ noteObject }) {
   const [disableFunction, setDisableFunction] = useState(false)
   const [isSorted, setIsSorted] = useState(false)
 
-  
+  //Get RQ
   useEffect(() => {
     get()
     .then(notes => 
       setNotes(notes)
       )
   }, [])
+
   //Sort Notes function top-bottom/ bottom-top
   const sortNotes = () => {
     const collection = [...notes]
@@ -40,7 +42,7 @@ function App({ noteObject }) {
 
   const addNewNote = (e) => {
     e.preventDefault()
-    
+    //random hex generator
     const hex = Math.floor(Math.random() * 0xffffff).toString(16).padEnd(6, "0")
 
     //Set up new note object
@@ -50,7 +52,7 @@ function App({ noteObject }) {
       color: hex
     })
 
-    //Post rq
+    //Post RQ
     if(newNote.length >= 5){
       create(noteObject)
       .then(newNotes => 
@@ -75,7 +77,7 @@ function App({ noteObject }) {
   const toggleImportant = (id) => {
     const note = findNote(id)
     const updatedImportance = {...note, important: !note.important}
-    //Post rq
+    //Update RQ
     update(id, updatedImportance)
     .then(
       setNotes(notes.map(n => n.id !== id ? n : updatedImportance))
@@ -89,7 +91,7 @@ function App({ noteObject }) {
   if(notePrompt){
     if(notePrompt.length >= 5){
       const updatedContent = {...note, content: notePrompt}
-      //Post rq
+      //Update RQ
       update(id, updatedContent)
       .then(
         setNotes(notes.map(n => n.id === id ? updatedContent : n)),
@@ -118,7 +120,7 @@ function App({ noteObject }) {
       }
     }   
   }
-  // Delete
+  // Delete RQ
   const deleteNote = (id) => {
     const filteredNote = notes.filter(note => id !== note.id)
     const confirmDelete = window.confirm('Would you want to remove this note?')
@@ -143,11 +145,24 @@ function App({ noteObject }) {
       })
     }
   }
-
+  //Delete All RQ
   const deleteAllNotes = () => {
-    setNotes([])
+    const confirmDeleteAll = window.confirm('Are you sure you want to remove all notes?')
+    const removeNotes = []
 
-    
+    if(confirmDeleteAll){
+      setNotes(removeNotes)
+      removeAll()
+      .then(() => {
+        setNotes(removeNotes)
+        setSuccessMessage('Removed All Notes!')
+        setTimeout(() => {
+          setSuccessMessage(null)
+        }, 1500)
+      }).catch((error) => {
+        console.log(error)
+      })
+    }
   }
 
   return (

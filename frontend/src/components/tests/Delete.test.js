@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
-import Notes from './Notes';
+import Notes from '../Notes';
 
 test('Delete button exists and updates parent state', () => {
   const onDeleteMock = jest.fn();

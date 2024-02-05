@@ -2,7 +2,7 @@ import { FaTrashAlt } from "react-icons/fa";
 import { TiPin, TiPinOutline } from "react-icons/ti";
 import { FaPencilAlt } from "react-icons/fa";
 import Card from 'react-bootstrap/Card'
-import './Notes.css'
+import '../components/css/Notes.css'
 
 function Notes({note, important, toggleImportant, updateNote, deleteNote, deactivate}) {
 
