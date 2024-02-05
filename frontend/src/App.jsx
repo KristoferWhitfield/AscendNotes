@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
-import Notes from './components/Notes'
+import Notes from './components/notes'
 import Form from './components/Form'
 import { noteServices } from './services/noteServices'
 import SuccessMessage from './components/SuccessMessage'
 import ErrorMessage from './components/ErrorMessage'
+import './App.css'
 
 const {
   get,
@@ -131,16 +132,19 @@ function App( {noteObject }) {
 
   return (
     <div>
-      <h1>Ascend Notes</h1>
-      <Form 
-        onSubmit={addNewNote} 
-        value={newNote} 
-        onChange={(e) => setNewNote(e.target.value)}
-      />
-      <hr />
-      <ErrorMessage message={errorMessage} />
-      <SuccessMessage message={successMessage}/>
-      <div style={{marginTop: '20px'}}>
+      <div className='formContainer'>
+        <h1>Ascend Notes</h1>
+        <Form 
+          onSubmit={addNewNote} 
+          value={newNote} 
+          onChange={(e) => setNewNote(e.target.value)}
+        />
+        <div className='NotificationMessages'>
+          <ErrorMessage message={errorMessage} />
+          <SuccessMessage message={successMessage}/>
+        </div>
+      </div>
+      <div className='container'>
         {collection.map(note => 
           <Notes 
             key={note.id} 

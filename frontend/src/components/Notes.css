@@ -1,0 +1,59 @@
+/* Main container */
+.hoverMode:hover {
+  font-size: 40px;
+}
+
+.pinStyle:hover {
+  /* margin: 5px; */
+  font-size: 50px;
+}
+
+.cardContainer {
+  /* display: flex; */
+  /* border: 1px solid red; */
+  margin-bottom: 5px;
+}
+
+/* Note Container */
+.noteContainer {
+  display: flex;
+  flex-wrap: wrap;
+  width: auto;
+  height: 250px;
+  margin: 5px;
+  /* border: 1px solid green; */
+}
+
+/* Note style */
+.noteStyle {
+  font-Size: 19px;
+}
+
+.noteStyle p {
+  font-size: 20px;
+}
+
+.noteCard {
+  padding: 0 0 10px 10px;
+  border: 1px solid rgba(0, 0, 0, 0.164);
+  background-color: rgba(229, 229, 6, 0.788);
+  font-family: 'Akaya Kanadaka';
+  font-size: 22px;
+  height: 250px;
+  border: 1.5px solid black;
+  border-radius: 15px;
+}
+
+/* update/Delete Styling */
+.updateDeleteContainer {
+  display: flex;
+  width: 75px;
+  align-Items: center;
+  justify-Content: space-around;
+}
+
+/* Pin toggle styling */
+.pinStyle {
+  /* margin: 5px; */
+  font-size: 35px;
+}

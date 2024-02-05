@@ -1,66 +1,47 @@
 import { FaTrashAlt } from "react-icons/fa";
 import { TiPin, TiPinOutline } from "react-icons/ti";
-import { useState } from "react";
+import { FaPencilAlt } from "react-icons/fa";
+import Card from 'react-bootstrap/Card'
+import './Notes.css'
 
 function Notes({note, important, toggleImportant, updateNote, deleteNote, deactivate}) {
-  const [isClicked, setIsClicked] = useState(false);
-
-  const noteStyle = {
-    fontSize: `${important ? '22px' : '18px'}`
-  }
-
-  const displayStyle = {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    height: '40px'
-  }
-  const elementStyle = {
-    margin: '5px',
-    fontSize: '20px'
-  };
-  const secondaryDivStyle = {
-    display: 'flex',
-    width: '100px',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-  }
-
-  const deleteStyle={
-    visibility: `${important ? 'hidden' : 'visible'}`
-  }
-
-  const buttonClick = () => {
-    toggleImportant(note.id);
-
-    // Update the state to reflect that the button has been clicked
-    setIsClicked(!isClicked);
-  };
 
   return (
-    <>
-      <div style={displayStyle}>
-        <div data-testid="change-importance" onClick={buttonClick}>
-          {isClicked ? (
-            <TiPin data-testid="icon-important" style={elementStyle} />
-          ) : (
-            <TiPinOutline data-testid="icon-unImportant" style={elementStyle} />
-          )}
+    <div className="cardContainer">
+      <div className="noteContainer">
+        <Card className="noteCard" style={{ width: '20rem'}}>
+          <div data-testid="change-importance" onClick={toggleImportant} >
+            {important ? (
+              <TiPin role="icon-important" className="pinStyle" />
+            ) : (
+              <TiPinOutline role="icon-unImportant" className="pinStyle" />
+            )}
+          </div>
+          <Card.Body>
+            <Card.Text className="noteStyle">
+              {note.content}
+            </Card.Text>
+          </Card.Body>
+        <div className="updateDeleteContainer">
+          <FaPencilAlt 
+            data-testid="update-button" 
+            onClick={() => updateNote(note.id)} 
+            disabled={deactivate}
+            className="hoverMode"
+          >
+          </FaPencilAlt>
+          <div>
+            <FaTrashAlt
+              data-testid="delete-icon"
+              style={{ visibility: important ? 'hidden' : 'visible' }} 
+              onClick={() => deleteNote(note.id)}
+              className="hoverMode" 
+            />
+          </div>
         </div>
-        <p style={noteStyle} className="note">
-          {note.content}
-        </p>
+      </Card>
       </div>
-      <div style={secondaryDivStyle}>
-        <button data-testid="update-button" onClick={() => updateNote(note.id)} disabled={deactivate}>Update</button>
-        <div>
-          <FaTrashAlt
-            data-testid="delete-icon"
-            style={deleteStyle} 
-            onClick={() => deleteNote(note.id)} />
-        </div>
-      </div>
-    </>
+    </div>
   )
 }
 
