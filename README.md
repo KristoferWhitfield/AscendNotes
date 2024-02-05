@@ -9,11 +9,11 @@
 - Elmer: Backend | Documentation
 - Kristofer: DevOps | Documentation
 
-Please visit and explore the hosted app here [Note App]() 
+Please visit and explore the hosted app here [Note App](https://ascendnotes.fly.dev/) 
 Please read detailed testing documentation here [Note App Testing Documentation](https://www.notion.so/Ascend-Notes-Documentation-29f35195934c41ccb28cb9b920610432?pvs=4)
 
 ### Description:
-When users visit the [Note App]() they are prompted to begin entering notes they'd like to save. Users can then Pin important notes, 
+When users visit the [Note App](https://ascendnotes.fly.dev/) they are prompted to begin entering notes they'd like to save. Users can then Pin important notes, 
 update note content as needed and delete each individual note.
 
 ### Most Challenging part
