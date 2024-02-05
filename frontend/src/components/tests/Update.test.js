@@ -5,7 +5,7 @@ import Notes from '../Notes';
 test('Update button exists and updates parent state', () => {
   const onUpdateMock = jest.fn();
 
-  const note = { id: 1, content: 'Test Note', important: false };
+  const note = { id: 1, content: 'Test Note', color: 'red', important: false };
 
   render(
     <Notes
