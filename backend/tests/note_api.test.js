@@ -54,27 +54,23 @@ describe("POST /api/notes", () => {
 });
 
 describe("PUT /api/notes/:id", () => {
-  const newNote = {
-    content: "HTML is somewhat easy",
-    important: false,
-  };
-  it("updates the identified note and returns the updated note with the same id", async () => {
+  it("updates the identified note and returns the updated notes with the same id", async () => {
     await api
       .post("/api/notes")
-      .send(newNote)
-      .then((res) => (newNote.id = res.body.id));
+      .send(notes)
+      .then((res) => (notes.id = res.body.id));
 
     await api
-      .put(`/api/notes/${newNote.id}`)
+      .put(`/api/notes/${notes.id}`)
       .send({ content: "Update note", important: true })
       .set("Accept", "application/json")
       .expect("Content-Type", /json/)
       .expect(200)
       .then((res) => {
-        console.log(newNote.id, "new note id");
-        expect(newNote.id).toEqual(res.body.id);
-        expect(newNote.content).not.toEqual(res.body.content);
-        expect(newNote.important).not.toEqual(res.body.important);
+        console.log(notes.id, "new note id");
+        expect(notes.id).toEqual(res.body.id);
+        expect(notes.content).not.toEqual(res.body.content);
+        expect(notes.important).not.toEqual(res.body.important);
       });
   });
 
@@ -92,17 +88,13 @@ describe("PUT /api/notes/:id", () => {
 });
 
 describe("DELETE /api/notes/:id", () => {
-  const note = {
-    content: "HTML is somewhat easy",
-    important: false,
-  };
   it("deletes the document", async () => {
     await api
       .post("/api/notes")
-      .send(note)
-      .then((res) => (note.id = res.body.id));
+      .send(notes)
+      .then((res) => (notes.id = res.body.id));
 
-    await api.delete(`/api/notes/${note.id}`).expect(204);
+    await api.delete(`/api/notes/${notes.id}`).expect(204);
   });
 
   describe("error handling", () => {
