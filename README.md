@@ -35,8 +35,8 @@ Backend:
 data return
 
 ### How would we improve this project?
-	-In a perfect world we would add usser authentication for multiple users to use the apps with individual accounts. 
-	Additionally, We would like to see more options for how to organixe notes in catagories and sort through the ones we want to see.
+-In a perfect world we would add usser authentication for multiple users to use the apps with individual accounts. 
+Additionally, We would like to see more options for how to organixe notes in catagories and sort through the ones we want to see.
 
 We believe we worked efficiently from day one by breaking down responsibilities 
 and tasks among the group, dedicating time each day to the project. The frontend 
