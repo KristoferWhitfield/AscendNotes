@@ -3,6 +3,17 @@ import supertest from "supertest";
 import app from "../app";
 
 const api = supertest(app);
+let notes = {
+  content: "HTML is somewhat easy",
+  important: false,
+};
+
+beforeEach(() => {
+  notes = {
+    content: "HTML is somewhat easy",
+    important: false,
+  };
+});
 
 describe("GET /api/notes", () => {
   it("responds with json", async () => {
@@ -17,17 +28,28 @@ describe("GET /api/notes", () => {
 });
 
 describe("POST /api/notes", () => {
-  const postNote = {
-    content: "HTML is somewhat easy",
-    important: false,
-  };
   it("responds with json", async () => {
     await api
       .post("/api/notes")
-      .send(postNote)
+      .send(notes)
       .set("Accept", "application/json")
       .expect("Content-Type", /json/)
-      .expect(200);
+      .expect(201);
+  });
+
+  describe("error handling", () => {
+    it("returns an error when posting an incomplete note", async () => {
+      delete notes.content;
+      await api
+        .post("/api/notes")
+        .send(notes)
+        .set("Accept", "application/json")
+        .expect("Content-Type", /json/)
+        .expect(400)
+        .expect({
+          error: "Note validation failed: content: Path `content` is required.",
+        });
+    });
   });
 });
 
@@ -55,6 +77,18 @@ describe("PUT /api/notes/:id", () => {
         expect(newNote.important).not.toEqual(res.body.important);
       });
   });
+
+  describe("error handling", () => {
+    it("returns an error when uploading to a nonexistent id in the database", async () => {
+      await api
+        .post("/api/notes/65c13ff3de22ff419caffd95")
+        .send(notes)
+        .set("Accept", "application/json")
+        .expect("Content-Type", /json/)
+        .expect(404)
+        .expect({ error: "unknown endpoint" });
+    });
+  });
 });
 
 describe("DELETE /api/notes/:id", () => {
@@ -69,6 +103,16 @@ describe("DELETE /api/notes/:id", () => {
       .then((res) => (note.id = res.body.id));
 
     await api.delete(`/api/notes/${note.id}`).expect(204);
+  });
+
+  describe("error handling", () => {
+    it("returns an error when deleting to a nonexistent id in the database", async () => {
+      await api
+        .delete("/api/notes/65c13ff3de22ff419caffd95")
+        .send(notes)
+        .set("Accept", "application/json")
+        .expect(204);
+    });
   });
 });
 

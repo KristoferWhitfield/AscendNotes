@@ -17,7 +17,7 @@ notesRouter.post("/", (req, res, next) => {
   note
     .save()
     .then((result) => {
-      res.status(200).json(result);
+      res.status(201).json(result);
     })
     .catch((error) => next(error));
 });
