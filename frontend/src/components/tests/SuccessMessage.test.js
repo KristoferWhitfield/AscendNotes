@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
-import SuccessMessage from './SuccessMessage';
+import SuccessMessage from '../SuccessMessage';
 
 test('renders success message when provided', () => {
   const message = 'Success!';

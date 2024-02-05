@@ -1,8 +1,8 @@
 import '@testing-library/jest-dom';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { expect, jest, test } from '@jest/globals';
 import userEvent from '@testing-library/user-event';
-import Form from './Form';
+import Form from '../Form';
 
 // tests whether onSubmit is called when button is clicked
 test('<Form/> exists', () => {
@@ -20,8 +20,8 @@ test('<Form /> updates parent state and submits', async () => {
   //Form needs to render before we check the element for specifics
   render(<Form onSubmit={onSubmit} />);
 
-  const input = screen.getByPlaceholderText(/write a note/);
-  const sendButton = screen.getByText('Add');
+  const input = screen.getByPlaceholderText(/Write A Note!/);
+  const sendButton = screen.getByRole('form-element');
 
   await user.type(input, 'testing a form...');
   await user.click(sendButton);

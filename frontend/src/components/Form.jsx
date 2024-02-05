@@ -1,14 +1,23 @@
+import { LuFilePlus2 } from "react-icons/lu";
+import '../components/css/Form.css'
+
 function Form({ onChange, value, onSubmit }) {
   return (
-    <div data-testid="form-element">
+    <div className = "formContainer" data-testid="form-element">
       <form onSubmit={onSubmit}>
-        <input 
+        <textarea
           value={value}
           required
-          placeholder="write a note"
+          placeholder="Write A Note!"
           onChange={onChange}
         />
-        <button type='submit'>Add</button>
+        <button
+        className="noteButton" 
+        type='submit'
+        role="form-element"
+        >
+        <LuFilePlus2 className="customButton"></LuFilePlus2>
+        </button>
       </form>
     </div>
   )

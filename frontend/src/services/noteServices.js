@@ -20,10 +20,15 @@ const remove = (id) => {
   return axios.delete(`${url}/${id}`).then((response) => response.data);
 };
 
+const removeAll = () => {
+  return axios.delete(`${url}/all/delete`).then((response) => response.data);
+};
+
 export const noteServices = {
   url,
   get,
   create,
   remove,
+  removeAll,
   update,
 };

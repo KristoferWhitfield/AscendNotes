@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
-import Notes from '../Notes';
+import Notes from '../notes';
 
 test('toggles importance state', async () => {
   const onToggleMock = jest.fn();
