@@ -1,5 +1,5 @@
-### We are team NoteWorthy
-#### Explore our Ascend Notes App – Your go-to hub for organizing and managing your noteworthy thoughts!
+# We are team NoteWorthy
+## Explore our Ascend Notes App – Your go-to hub for organizing and managing your noteworthy thoughts!
 ![Welcome to our Note app where your note worthy notes are stored for your organizational goals!](https://i.imgur.com/o36lkyW.gif)
 
 
