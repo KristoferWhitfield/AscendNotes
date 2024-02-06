@@ -48,6 +48,6 @@ Backend:
 We believe we worked efficiently from day one by breaking down responsibilities and tasks among the group, dedicating time each day to the project. The frontend and backend teams maintained excellent communication, ensuring a smooth workflow through our project manager. We utilized GitHub's backlog to issue tickets to each team, adhering to our schedule with the help of Notion and Slack for organizing notes and communication. We collaborated and supported each other whenever needed.
 
 Our [Note App Testing Documentation](https://www.notion.so/Ascend-Notes-Documentation-29f35195934c41ccb28cb9b920610432?pvs=4) is clear and consise! Writing our documentation helped us better understand how to build for testing and clearly articulate our test to other devs. 
-
+<hr>
 
 
