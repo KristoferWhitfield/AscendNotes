@@ -5,24 +5,17 @@ import { FaPencilAlt } from "react-icons/fa";
 import Card from 'react-bootstrap/Card'
 import '../components/css/Notes.css'
 
-function Notes({note, important, toggleImportant, updateNote, deleteNote, deactivate}) {
-  // const [isClicked, setIsClicked] = useState(false) 
-
-  // function changeImportance(id){
-  //   toggleImportant(note.id)
-
-  //   setIsClicked(true)
-  // }
+function Notes({note, toggleImportant, updateNote, deleteNote, deactivate}) {
 
   return (
     <div className="cardContainer">
       <div className="noteContainer">
         <Card className="noteCard" style={{ backgroundColor: `#${note.color}d5` }}>
-          <div data-testid="change-importance" onClick={toggleImportant} >
-            {important ? (
-              <TiPin role="icon-important" className="pinStyle" />
+          <div data-testid="change-importance" onClick={() => toggleImportant(note.id)} >
+            { note.important ? (
+              <TiPin data-testid="icon-important" className="pinStyle" />
             ) : (
-              <TiPinOutline role="icon-unImportant" className="pinStyle" />
+              <TiPinOutline data-testid="icon-unImportant" className="pinStyle" />
             )}
           </div>
           <Card.Body>
@@ -41,7 +34,7 @@ function Notes({note, important, toggleImportant, updateNote, deleteNote, deacti
           <div>
             <FaTrashAlt
               data-testid="delete-icon"
-              style={{ visibility: important ? 'hidden' : 'visible' }} 
+              style={{ visibility: note.important ? 'hidden' : 'visible' }} 
               onClick={() => deleteNote(note.id)}
               className="hoverMode" 
             />
