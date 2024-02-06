@@ -5,7 +5,7 @@ const notesRouter = express.Router();
 
 notesRouter.get('/', (req, res) => {
   Note.find({}).then((notes) => {
-    res.json(notes);
+    res.status(200).json(notes);
   });
 });
 
@@ -18,10 +18,11 @@ notesRouter.post('/', (req, res, next) => {
   note
     .save()
     .then((result) => {
-      res.json(result);
+      res.status(201).json(result);
     })
     .catch((error) => next(error));
 });
+
 
 notesRouter.delete('/:id', (request, response, next) => {
   Note.findOneAndDelete({ _id: request.params.id })
@@ -50,7 +51,7 @@ notesRouter.put('/:id', (request, response, next) => {
 
   Note.findByIdAndUpdate(request.params.id, note, { new: true })
     .then((updatedNote) => {
-      response.json(updatedNote);
+      response.status(200).json(updatedNote);
     })
     .catch((error) => next(error));
 });
