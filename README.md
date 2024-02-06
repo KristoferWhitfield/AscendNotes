@@ -3,7 +3,11 @@
 ![Welcome to our Note app where your note worthy notes are stored for your organizational goals!](https://i.imgur.com/o36lkyW.gif)
 
 
+
+
+  
 Please visit and explore the hosted app here [Note App](https://ascendnotes.fly.dev/) 
+
 Please read detailed testing documentation here [Note App Testing Documentation](https://www.notion.so/Ascend-Notes-Documentation-29f35195934c41ccb28cb9b920610432?pvs=4)
 
 ### App Description:
@@ -11,6 +15,13 @@ When users visit the [Note App](https://ascendnotes.fly.dev/) they are prompted 
 update note content as needed and delete each individual note.
 
 Languages/Frameworks/Environments: REACT | JS | NODE | EXPRESS | CSS | Bootstrap | Jest | Supertest
+
+#### Responsibility Breakdown:
+- Dashlin: Frontend | Testing | Deployment | Documentation
+- Jasmine: Frontend | PM | Documentation
+- Dionne: Backend | Testing
+- Elmer: Backend | Documentation
+- Kristofer: DevOps | Documentation
 <hr>
 
 ### Most Challenging part
@@ -37,10 +48,5 @@ We believe we worked efficiently from day one by breaking down responsibilities 
 
 Our [Note App Testing Documentation](https://www.notion.so/Ascend-Notes-Documentation-29f35195934c41ccb28cb9b920610432?pvs=4) is clear and consise! Writing our documentation helped us better understand how to build for testing and clearly articulate our test to other devs. 
 
-#### Responsibility Breakdown:
-- Dashlin: Frontend | Testing | Deployment | Documentation
-- Jasmine: Frontend | PM | Documentation
-- Dionne: Backend | Testing
-- Elmer: Backend | Documentation
-- Kristofer: DevOps | Documentation
+
 
