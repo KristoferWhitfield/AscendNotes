@@ -33,7 +33,7 @@ Backend:
 - The most challenging part of developing this app was keeping up with the schedule and tickets while being sick and having such a short deadline to meet.
 <hr>
 
-### Most enjoyable part:
+### Most enjoyable part
 FrontEnd:
 - The most enjoyable part of developing this app was STYLING of course! Us Front end Devs love to make it cool and fancy! We learned multiple ways to apply style and incorporate it into the apps functionality.
 
