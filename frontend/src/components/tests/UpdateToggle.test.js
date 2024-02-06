@@ -11,15 +11,16 @@ test('toggles importance state', async () => {
     color: 'red',
     important: false,
   };
+
   const deleteButton = screen.queryByTestId('delete-button');
 
   render(<Notes note={note} toggleImportant={onToggleMock} />);
 
-  expect(screen.getByRole('icon-unImportant')).toBeInTheDocument();
+  expect(screen.getByTestId('icon-unImportant')).toBeInTheDocument();
 
-  fireEvent.click(screen.getByTestId('change-importance'));
+  await fireEvent.click(screen.getByTestId('change-importance'));
 
-  expect(screen.getByRole('icon-important')).toBeInTheDocument();
+  expect(screen.getByTestId('icon-important')).toBeInTheDocument();
 
   expect(onToggleMock).toHaveBeenCalledWith(note.id);
 

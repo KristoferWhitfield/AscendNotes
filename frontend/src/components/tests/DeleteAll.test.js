@@ -6,7 +6,7 @@ beforeEach(() => {
   global.confirm = jest.fn();
 });
 
-test('Delete all button exists and deletes all notes', () => {
+test('Delete all button exists and deletes all notes', async () => {
   global.confirm.mockReturnValueOnce(true);
 
   const removeAllMock = jest.fn();
@@ -14,7 +14,7 @@ test('Delete all button exists and deletes all notes', () => {
   render(<App deleteAllNotes={removeAllMock} />);
   const deleteAllIcon = screen.getByTestId('deleteAll-icon');
 
-  fireEvent.click(deleteAllIcon);
+  await fireEvent.click(deleteAllIcon);
 
   expect(deleteAllIcon).toBeInTheDocument();
   expect(removeAllMock).toHaveBeenCalled();

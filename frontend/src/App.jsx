@@ -193,8 +193,7 @@ function App({ noteObject }) {
             key={note.id} 
             note={note}
             deactivate={disableFunction}
-            toggleImportant={() => toggleImportant(note.id)}
-            important={note.important}
+            toggleImportant={toggleImportant}
             updateNote={() => updateNote(note.id)}
             deleteNote={() => deleteNote(note.id)}
           />
