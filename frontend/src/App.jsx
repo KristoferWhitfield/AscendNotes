@@ -35,7 +35,7 @@ function App({ noteObject }) {
   //Sort Notes function top-bottom/ bottom-top
   const sortNotes = () => {
     const collection = [...notes]
-    .sort((a, b) =>  (isSorted ? b.important - a.important : a.important - b.important))
+    .sort((a, b) =>  (isSorted ? a.important - b.important : b.important - a.important))
     setNotes(collection)
     setIsSorted(!isSorted)
   }
@@ -48,8 +48,8 @@ function App({ noteObject }) {
     //Set up new note object
     noteObject = ({
       content: newNote,
-      important: false,
-      color: hex
+      color: hex,
+      important: false
     })
 
     //Post RQ
