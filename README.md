@@ -1,9 +1,9 @@
 ### We are team NoteWorthy
 #### Explore our Note App – Your go-to hub for organizing and managing your noteworthy thoughts!
-![Welcome to our Note app where your note worthy notes are stored for your organizational goals!](https://i.imgur.com/a0TpWqD.jpeg)
+![Welcome to our Note app where your note worthy notes are stored for your organizational goals!](https://i.imgur.com/o36lkyW.gif)
 
 #### Responsibility Breakdown:
-- Dashlin: Frontend | Testing | Documentation
+- Dashlin: Frontend | Testing | Deployment | Documentation
 - Jasmine: Frontend | PM | Documentation
 - Dionne: Backend | Testing
 - Elmer: Backend | Documentation
