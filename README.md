@@ -19,12 +19,14 @@ update note content as needed and delete each individual note.
 ### Most Challenging part
 FrontEnd:
 - The most challenging part of developing this app was realizing we had to go back and make changes in order to write good test. Through this, we understood the importance of components in relation to creating test.
+
 Backend:
 - The most challenging part of developing this app was keeping up with the schedule and tickets while being sick and having such a short deadline to meet.
 
 ### Most enjoyable part:
 FrontEnd:
-- The most enjoyable part of developing this app was STYLING of course! Us Front end Devs love to make it cool and fancy! We learned multiple ways to apply style and incorporate it into the apps functionality. 
+- The most enjoyable part of developing this app was STYLING of course! Us Front end Devs love to make it cool and fancy! We learned multiple ways to apply style and incorporate it into the apps functionality.
+
 Backend:
 - The most enjoyable part of developing this app was witnessing the end result. It's truly rewarding to see the calls working and the expected data return
 
