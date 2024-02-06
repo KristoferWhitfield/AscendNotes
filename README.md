@@ -6,7 +6,7 @@
 
 
 
-### Visit App and Testing Documentation
+### Visit App and Testing Documentation:
 Please visit and explore the hosted app here [Ascend Notes App](https://ascendnotes.fly.dev/) 
 
 Please read detailed testing documentation here [Note App Testing Documentation](https://www.notion.so/Ascend-Notes-Documentation-29f35195934c41ccb28cb9b920610432?pvs=4)
