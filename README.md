@@ -1,17 +1,17 @@
 ### We are team NoteWorthy
-#### Explore our Note App – Your go-to hub for organizing and managing your noteworthy thoughts!
+#### Explore our Ascend Notes App – Your go-to hub for organizing and managing your noteworthy thoughts!
 ![Welcome to our Note app where your note worthy notes are stored for your organizational goals!](https://i.imgur.com/o36lkyW.gif)
 
 
 
 
-  
-Please visit and explore the hosted app here [Note App](https://ascendnotes.fly.dev/) 
+### Visit App and Testing Documentation
+Please visit and explore the hosted app here [Ascend Notes App](https://ascendnotes.fly.dev/) 
 
 Please read detailed testing documentation here [Note App Testing Documentation](https://www.notion.so/Ascend-Notes-Documentation-29f35195934c41ccb28cb9b920610432?pvs=4)
 
 ### App Description:
-When users visit the [Note App](https://ascendnotes.fly.dev/) they are prompted to begin entering notes they'd like to save. Users can then Pin important notes, 
+When users visit the [Ascend Notes App](https://ascendnotes.fly.dev/) they are prompted to begin entering notes they'd like to save. Users can then Pin important notes, 
 update note content as needed and delete each individual note.
 
 Languages/Frameworks/Environments: REACT | JS | NODE | EXPRESS | CSS | Bootstrap | Jest | Supertest
