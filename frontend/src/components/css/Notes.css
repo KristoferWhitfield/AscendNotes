@@ -4,13 +4,10 @@
 }
 
 .pinStyle:hover {
-  /* margin: 5px; */
   font-size: 50px;
 }
 
 .cardContainer {
-  /* display: flex; */
-  /* border: 1px solid red; */
   margin-bottom: 5px;
 }
 
@@ -21,12 +18,11 @@
   width: auto;
   height: 250px;
   margin: 5px;
-  /* border: 1px solid green; */
 }
 
 /* Note style */
 .noteStyle {
-  font-Size: 19px;
+  font-Size: 22px;
 }
 
 .noteStyle p {

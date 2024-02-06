@@ -4,7 +4,7 @@ import '../components/css/Form.css'
 function Form({ onChange, value, onSubmit }) {
   return (
     <div className = "formContainer" data-testid="form-element">
-      <form onSubmit={onSubmit}>
+      <form id="noteForm" onSubmit={onSubmit}>
         <textarea
           value={value}
           required

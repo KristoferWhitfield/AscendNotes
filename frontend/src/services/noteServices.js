@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url = 'http://localhost:8080/api/notes';
+const url = '/api/notes';
 
 const get = () => {
   return axios.get(url).then((response) => response.data);

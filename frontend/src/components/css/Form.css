@@ -37,7 +37,7 @@ textarea {
   width: 400px;
   padding-top: 10px;
   text-align: center;
-  font-size: 22px;
+  font-size: 22px!important;
   height: 50px;
   background-color: transparent;
   border-bottom: 5px solid black;
